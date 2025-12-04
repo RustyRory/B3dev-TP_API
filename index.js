@@ -1,5 +1,5 @@
 const DEVISES_AUTORISEES = ["$", "€"];
-import { determineCoupureGeneric } from "./dab7_functions.js";
+import { determineCoupureGeneric } from "./DAB/dab.js";
 import { createInterface } from "node:readline/promises";
 
 const READLINE = createInterface({
