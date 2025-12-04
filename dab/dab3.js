@@ -6,7 +6,7 @@ if (isNaN(montant) || montant <= 0 || montant >= 1000) {
   process.exit(1);
 }
 
-if (devise !== "€" && devise !== "$") {
+if (devise !== "€" && devise !== "$" && devise == undefined && devise == null) {
   console.log("Veuillez entrer une devise valide : € ou $.");
   process.exit(1);
 }
@@ -25,19 +25,19 @@ function determineCoupureEuro(montant) {
   }
 
   let resultat = `${montant}€ représente :\n`;
-  const parts = [];
+  const total = [];
 
   Object.entries(billetsEtPieces).forEach(([valeur, quantite]) => {
     if (quantite > 0) {
       if (Number(valeur) >= 5) {
-        parts.push(`${quantite} billet(s) de ${valeur}€`);
+        total.push(`${quantite} billet(s) de ${valeur}€`);
       } else {
-        parts.push(`${quantite} pièce(s) de ${valeur}€`);
+        total.push(`${quantite} pièce(s) de ${valeur}€`);
       }
     }
   });
 
-  return resultat + parts.join("\n");
+  return resultat + total.join("\n");
 }
 
 function determineCoupureDollars(montant) {
@@ -54,19 +54,19 @@ function determineCoupureDollars(montant) {
   }
 
   let resultat = `${montant}$ représente :\n`;
-  const parts = [];
+  const total = [];
 
   Object.entries(billetsEtPieces).forEach(([valeur, quantite]) => {
     if (quantite > 0) {
       if (Number(valeur) >= 5) {
-        parts.push(`${quantite} billet(s) de ${valeur}$`);
+        total.push(`${quantite} billet(s) de ${valeur}$`);
       } else {
-        parts.push(`${quantite} pièce(s) de ${valeur}$`);
+        total.push(`${quantite} pièce(s) de ${valeur}$`);
       }
     }
   });
 
-  return resultat + parts.join("\n");
+  return resultat + total.join("\n");
 }
 
 let resultat;
