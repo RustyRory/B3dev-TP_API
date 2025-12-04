@@ -1,39 +1,38 @@
 const DEVISES_AUTORISEES = ["$", "€"];
-const monModule = require("./dab5_functions.js");
+const MONMODULE = require("./dab5_functions.js");
 const { createInterface } = require("node:readline");
 
-const rl = createInterface({
+const READLINE = createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
-rl.question("Entrez le montant : ", (montantInput) => {
-  const montantValue = parseFloat(montantInput);
+READLINE.question("Entrez le montant : ", (montantInput) => {
+  const NOMTANTVALUE = parseFloat(montantInput);
 
-  if (isNaN(montantValue)) {
-    console.log("❌ Le montant doit être un nombre.");
-    rl.close();
+  if (isNaN(NOMTANTVALUE)) {
+    console.log("Le montant doit être un nombre.");
+    READLINE.close();
     return;
   }
 
-  rl.question("Entrez la devise ($ ou €) : ", (deviseInput) => {
-    const deviseValue = deviseInput;
+  READLINE.question("Entrez la devise ($ ou €) : ", (deviseInput) => {
+    const DEVISEVALUE = deviseInput;
 
-    if (!DEVISES_AUTORISEES.includes(deviseValue)) {
-      console.log(`❌ La devise '${deviseValue}' n'est pas gérée.`);
-      rl.close();
+    if (!DEVISES_AUTORISEES.includes(DEVISEVALUE)) {
+      console.log(`La devise '${DEVISEVALUE}' n'est pas gérée.`);
+      READLINE.close();
       return;
     }
 
     // Appel principal
-    const result = monModule.determineCoupureGeneric({
-      montant: montantValue,
-      typeDevise: deviseValue,
+    const RESULT = MONMODULE.determineCoupureGeneric({
+      montant: NOMTANTVALUE,
+      typeDevise: DEVISEVALUE,
     });
 
-    console.log("\n");
-    console.table(result.distribution);
+    console.table(RESULT.distribution);
 
-    rl.close();
+    READLINE.close();
   });
 });

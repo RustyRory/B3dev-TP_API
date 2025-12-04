@@ -109,3 +109,20 @@ Montant : 137
 Devise (€/$) : €
 Résultat : { '50 euro': 2, '20 euro': 1, '10 euro': 1, '5 euro': 1, '2 euro': 1, '1 euro': 0 }
 ```
+
+### DAB7 – ESModule
+
+Convertissez le projet en ESModules (import / export) en ajoutant "type": "module" dans le package.json.
+Utilisez maintenant top-level await pour rendre les questions plus lisibles avec le module :
+
+```
+import readline from 'node:readline/promises';
+```
+
+Exemple minimal :
+
+```
+const montant = await rl.question('Montant : ');
+const devise = await rl.question('Devise : ');
+
+```
