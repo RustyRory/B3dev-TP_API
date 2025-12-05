@@ -1,23 +1,14 @@
 import http from "node:http";
 import { parse } from "node:url";
 
-const server = http.createServer((req, res) => {
-  const { pathname } = parse(req.url);
+const server = http.createServer((request, response) => {
+  const { pathname } = parse(request.url);
 
   const sendHTML = (status, content) => {
-    res.writeHead(status, { "Content-Type": "text/html; charset=utf-8" });
-    res.end(`
-      <!DOCTYPE html>
-      <html lang="fr">
-      <head>
-        <meta charset="UTF-8">
-        <title>Mon site Node.js</title>
-      </head>
-      <body>
-        ${content}
-      </body>
-      </html>
-    `);
+    response.writeHead(status, {
+      "Content-Type": 'text/html; charset=utf-8; lang="fr"',
+    });
+    response.end(`<html><body>${content}</body></html>`);
   };
 
   if (pathname === "/") {
@@ -33,4 +24,12 @@ const server = http.createServer((req, res) => {
 
 server.listen(4000, "localhost", () => {
   console.log("Serveur démarré sur http://localhost:4000");
+});
+
+process.on("SIGINT", () => {
+  console.log("\nArrêt du serveur...");
+  server.close(() => {
+    console.log("Serveur arrêté !");
+    process.exit(0);
+  });
 });
