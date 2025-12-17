@@ -181,3 +181,17 @@ Et vous vous souvenez du DAB ?
 - Cette page doit utiliser votre module DAB et afficher le plus petite coupure pour le montant passer en paramètre
 
 - Déploiement du projet sur VPS
+
+### Websocket
+
+Direction la doc officielle pour faire un chat en temps réel avec socket.io.
+
+Votre chat doit gérer les informations suivantes :
+
+- Chaque utilisateur doit pouvoir définir son pseudo
+- Coté client, le pseudo doit être en gras, le message en normal, et la date du message à droite (voir screenshot ci-dessous)
+- La date du message doit être gérée côté serveur
+- A la connexion d'un nouvel utilisateur, l'historique de la conversation doit s'afficher
+- De plus, votre serveur doit pouvoir supprimer les gros mots (voir screenshot ci-dessous)
+- Vous pouvez gérer pour que le pseudo de l'utilisateur connecté apparaisse en rouge
+- Vous pouvez aussi gérer plusieurs salons via les "rooms" de socket.io
