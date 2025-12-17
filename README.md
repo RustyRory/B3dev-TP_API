@@ -155,3 +155,25 @@ Continuez votre serveur, mais au lieu d'écrire directement le HTML dans la rép
   - Envoyez des datas à chaque page pour le titre change.
 - Depuis n'importe quelle page, on doit pouvoir ajouter le parametre isAdmin. Si il passe à true, on doit alors voir une modification dans le site (changement de la couleur de fond par exemple).
 - Cette modification doit rester, jusqu'à ce que la variable isAdmin repasse à false. Vous devez utiliser les cookies (via request.headers.cookie) pour stoker cette information chez le client.
+
+### Serveur Express
+
+Initialiser un nouveau projet, et faite une copie de votre précédent travail. Tranformer votre server web HTTP en serveur Express. Ajouter les fonctionnalités suivantes :
+
+- Créez des nouvelles routes avec variables dedans
+- Le fichier principale doit s’appeler app.js et doit tourner sur le port 8080.
+- Utilisez des templates avec des includes dedans [via le module ejs].
+- Ajoutez dans une page, un formulaire pour se connecter et passer en mode admin. Le login et le password devront être "admin". Conservez les informations dans une session et faire apparaître "Bienvenue login" dans toutes les pages.
+- Créer un bouton de déconnexion.
+- Créer un menu de navigation avec plusieurs pages. Attention, je tiendrais compte de la qualité du site web.
+- Ajoutez une route pour télécharger un fichier YYYYMMDD_HHmmss.txt qui contient la date du téléchargement ... bref, vous aller devoir utiliser FS.
+- Dans la navigation, mettre un lien visible vers une page d'erreur (et gérer une page 404 du coup)
+- Attention, votre site web doit être "joli" et contenir des balises HTML5 entre autre
+- L'installation doit se faire uniquement via la commande "npm install". Attention tout vos modules doivent être en installés en local (--save) et pas en globale (-g)
+- Ajoutez dans votre package.json , dans "scripts", la ligne suivante "start": "node app.js"
+- Ajoutez dans votre projet un fichier readme.md avec les instructions d’installation.
+
+Et vous vous souvenez du DAB ?
+
+- Inclure une page avec une route dynamique qui prends un montant en dynamique
+- Cette page doit utiliser votre module DAB et afficher le plus petite coupure pour le montant passer en paramètre
