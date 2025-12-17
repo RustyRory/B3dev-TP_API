@@ -3,6 +3,7 @@
 ## [1.1.0]
 
 - Déploiement automatique
+-
 
 ## [1.0.0]
 
