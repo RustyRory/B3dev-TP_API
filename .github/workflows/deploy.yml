@@ -1,5 +1,6 @@
 name: Deploy to VPS
 
+# Déclenche le workflow à chaque push sur main
 on:
   push:
     branches:
@@ -10,13 +11,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: SSH Deploy
+      # Étape 1 : Action pour se connecter au VPS via SSH
+      - name: Deploy via SSH
         uses: appleboy/ssh-action@v0.1.6
         with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
-          port: 22
+          host: ${{ secrets.VPS_HOST }} # IP ou nom de domaine du VPS
+          username: ${{ secrets.VPS_USER }} # Utilisateur SSH (ex: root)
+          key: ${{ secrets.VPS_SSH_KEY }} # Clé privée SSH stockée dans les secrets
+          port: 22 # Port SSH, 22 par défaut
           script: |
-            cd /B3dev/B3dev-TP_API
-            ./deploy.sh
+            echo "Déploiement démarré..."
+            cd /B3dev/B3dev-TP_API        
+            git fetch origin main
+            git reset --hard origin/main
+            npm install
+            pm2 restart tp-nodejs             
+            echo "Déploiement terminé."
