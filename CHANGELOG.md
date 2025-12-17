@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.0]
+
+- Déploiement automatique
+
 ## [1.0.0]
 
 - Création du premier script Node.js
