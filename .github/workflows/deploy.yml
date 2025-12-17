@@ -24,6 +24,7 @@ jobs:
             cd /B3dev/B3dev-TP_API        
             git fetch origin main
             git reset --hard origin/main
+            cd serveurExpress   
             npm install
-            pm2 restart tp-nodejs             
+            npm start      
             echo "Déploiement terminé."
