@@ -23,5 +23,5 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             npm install
-            pm2 restart tp-nodejs
+            pm2 restart tp-nodejs || pm2 start app.js --name tp-nodejs
             echo "Déploiement terminé."
