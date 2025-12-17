@@ -18,10 +18,12 @@ Le projet consiste à développer un Distributeur Automatique de Billets (DAB) c
 
 ```
 .
-├── app.js # Script principal
-├── dab.js # Module de calcul des coupures
+├── app.js # Script principal du serveur Express
+├── utils/dab.js # Module distributeur de billets
+├── views/pages # Templates EJS pour les pages
+├── views/partials # Includes EJS (header, footer, head)
 └── .vscode/
-└── launch.json # Config VSCode pour le débogage
+└── launch.json # Configuration VSCode pour le débogage
 ```
 
 ## 🚀 Installation et exécution
@@ -29,8 +31,8 @@ Le projet consiste à développer un Distributeur Automatique de Billets (DAB) c
 1. Cloner le projet :
 
 ```
-git clone <url-du-projet>
-cd <nom-du-dossier>
+git clone git@github.com:RustyRory/B3dev-TP_API.git
+cd serveurExpress
 ```
 
 2. Vérifier que Node.js est installé :
@@ -42,10 +44,10 @@ node -v
 3. Exécuter le script :
 
 ```
-node app.js
+npm run start
 ```
 
-## Fonctionnalités
+## TP Node.js - Étapes et fonctionnalités
 
 ### Premier script
 
@@ -177,3 +179,5 @@ Et vous vous souvenez du DAB ?
 
 - Inclure une page avec une route dynamique qui prends un montant en dynamique
 - Cette page doit utiliser votre module DAB et afficher le plus petite coupure pour le montant passer en paramètre
+
+- Déploiement du projet sur VPS
