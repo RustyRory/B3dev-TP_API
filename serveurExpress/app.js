@@ -5,8 +5,11 @@ import { fileURLToPath } from "node:url";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import ejs from "ejs";
+import { createServer } from "http";
+import { Server as SocketIO } from "socket.io";
+import { Filter } from "bad-words";
 
-import { determineCoupureGeneric } from "./utils/dab.js";
+import { determineCoupureGeneric } from "./public/js/dab.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -67,6 +70,7 @@ app.get("/error", (req, res) => {
   res.render("pages/404", { title: "404" });
 });
 
+// ---- DOWNLOAD ----
 app.get("/download", (req, res) => {
   const now = new Date();
 
@@ -184,6 +188,11 @@ ${
   res.render("pages/dab", { content });
 });
 
+// ---- PAGE TCHAT ----
+app.get("/tchat", (req, res) => {
+  res.render("pages/tchat", { title: "Tchat" });
+});
+
 // ---- PAGE LOGIN ----
 app.get("/login", (req, res) => {
   res.render("pages/login", { title: "Connexion", error: null });
@@ -221,7 +230,37 @@ app.use((req, res) => {
   res.status(404).render("pages/404", { title: "404" });
 });
 
-// ---- START SERVER ----
-app.listen(PORT, () => {
-  console.log(`Serveur démarré sur http://localhost:${PORT}`);
+// ---- SERVER + SOCKET.IO ----
+const httpServer = createServer(app);
+const io = new SocketIO(httpServer);
+
+let messages = []; // Historique des messages
+
+io.on("connection", (socket) => {
+  console.log("Utilisateur connecté :", socket.id);
+
+  // Envoyer l'historique
+  socket.emit("historique", messages);
+
+  socket.on("nouveauMessage", (data) => {
+    const filter = new Filter();
+    const msgFiltre = filter.clean(data.message);
+
+    const msg = {
+      pseudo: data.pseudo,
+      message: msgFiltre,
+      date: new Date().toLocaleTimeString(),
+      id: socket.id,
+    };
+    messages.push(msg);
+    io.emit("message", msg);
+  });
+
+  socket.on("disconnect", () =>
+    console.log("Utilisateur déconnecté :", socket.id)
+  );
 });
+
+httpServer.listen(PORT, () =>
+  console.log(`Serveur démarré sur http://localhost:${PORT}`)
+);
