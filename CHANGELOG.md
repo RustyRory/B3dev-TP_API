@@ -1,9 +1,12 @@
 # Changelog
 
+## [1.2.0]
+
+- Ajout tchat
+
 ## [1.1.0]
 
 - Déploiement automatique
--
 
 ## [1.0.0]
 
