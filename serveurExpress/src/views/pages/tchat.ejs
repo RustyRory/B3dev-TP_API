@@ -11,7 +11,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Entrez votre pseudo</h5>
+        <h5 class="card-title">Entrez votre pseudo</h5>
       </div>
       <div class="modal-body">
         <form id="pseudo-form">
@@ -33,14 +33,53 @@
 <div class="container my-5">
   <h2 class="mb-4 text-center">Tchat</h2>
 
-  <!-- Card pour les messages -->
   <div class="card shadow-sm mb-4">
-    <div id="tchat" class="card-body" style="height: 400px; overflow-y: auto">
-      <!-- Les messages apparaîtront ici -->
+    <div class="card-body">
+      <h5 class="card-title text-center mb-4">
+        Salon : <span id="current-room">Général</span>
+      </h5>
+
+      <!-- Navigation pills pour les rooms -->
+      <ul
+        class="nav nav-pills card-header-pills mb-3"
+        id="roomPills"
+        role="tablist"
+      >
+        <li class="nav-item">
+          <button class="nav-link active" data-room="general" type="button">
+            Général
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" data-room="channel" type="button">
+            Channel
+          </button>
+        </li>
+        <li class="nav-item">
+          <button
+            class="nav-link"
+            id="admin-tab"
+            data-room="admin"
+            type="button"
+          >
+            Admin
+          </button>
+        </li>
+      </ul>
+
+      <div
+        id="tchat"
+        class="card-body"
+        style="
+          height: 400px;
+          overflow-y: auto;
+          background-color: #f8f9fa;
+          border-radius: 0.25rem;
+        "
+      ></div>
     </div>
   </div>
 
-  <!-- Formulaire d'envoi -->
   <form id="tchat-form" class="d-flex">
     <input
       id="input"
@@ -51,7 +90,4 @@
     <button class="btn btn-secondary" type="submit">Envoyer</button>
   </form>
 </div>
-
-<script src="/socket.io/socket.io.js"></script>
-<script src="/js/tchat.js"></script>
 ` }) %>

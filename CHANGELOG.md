@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.3.0]
+
+- Ajout Bootstrap
+- Corrections DAB
+- Correction tchat
+
 ## [1.2.0]
 
 - Ajout tchat
