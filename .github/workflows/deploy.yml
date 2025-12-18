@@ -21,7 +21,7 @@ jobs:
           port: 22
           script: |
             echo "Déploiement démarré..."
-            cd /root/B3dev-TP_API/serveurExpress
+            cd /root/B3dev/B3dev-TP_API/serveurExpress
             git fetch origin main
             git reset --hard origin/main
             npm install
