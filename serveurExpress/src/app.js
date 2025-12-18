@@ -231,6 +231,6 @@ io.on("connection", (socket) => {
   );
 });
 
-httpServer.listen(PORT, "0.0.0.0", () =>
-  console.log(`Serveur démarré sur http://0.0.0.0:${PORT}`)
+httpServer.listen(PORT, "127.0.0.1", () =>
+  console.log(`Serveur démarré sur http://127.0.0.1:${PORT}`)
 );
