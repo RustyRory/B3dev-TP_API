@@ -1,0 +1,54 @@
+<%- include('../layout', { content: `
+<div class="text-center bg-light p-5 rounded mb-5 shadow-sm">
+  <h1 class="display-4 mb-3">TP API</h1>
+  <p class="lead mb-4">
+    Découvrez ce projet réalisé dans le cadre de
+    <strong>MyDigitalSchool</strong>, pour apprendre à créer des applications
+    web dynamiques avec <strong>Node.js</strong>, <strong>Express</strong> et
+    <strong>EJS</strong>.
+  </p>
+  <a href="/dab" class="btn btn-secondary btn-lg me-2">Accéder au DAB</a>
+  <a href="/tchat" class="btn btn-secondary btn-lg">Aller au Tchat</a>
+</div>
+
+<div class="row justify-content-center mb-5">
+  <div class="col-12 col-lg-10">
+    <div class="card h-100 shadow-sm mx-auto">
+      <div class="card-body">
+        <div class="row">
+          <!-- Section Apprentissage pratique -->
+          <div class="col-md-4 mb-4 mb-md-0">
+            <h5 class="card-title text-center">💻 Apprentissage</h5>
+            <p class="card-text text-center">
+              Créer un serveur web, gérer les routes, manipuler les formulaires
+              et tester l'applicationsen temps réel.
+            </p>
+          </div>
+
+          <!-- Section Fonctionnalités -->
+          <div class="col-md-4 mb-4 mb-md-0 border-start border-end px-3">
+            <h5 class="card-title text-center">🛠 Fonctionnalités</h5>
+            <p class="card-text text-center">
+              DAB, tchat en temps réel, téléchargement de fichiers .txt, gestion
+              des erreurs et interface responsive.
+            </p>
+          </div>
+
+          <!-- Section GitHub -->
+          <div class="col-md-4">
+            <h5 class="card-title text-center">📦 GitHub</h5>
+            <p class="card-text text-center">
+              Accédez au code source complet, clonez le projet et suivez les
+              évolutions.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer text-center">
+        <a href="/about" class="btn btn-outline-secondary">En savoir plus</a>
+      </div>
+    </div>
+  </div>
+</div>
+`}) %>

@@ -1,0 +1,53 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container">
+      <!-- Brand -->
+      <a class="navbar-brand" href="/">TP API</a>
+
+      <!-- Burger -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#mainNavbar"
+        aria-controls="mainNavbar"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Menu -->
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="/">Accueil</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">À propos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact">Contact</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="/dab">DAB</a></li>
+          <li class="nav-item"><a class="nav-link" href="/tchat">Tchat</a></li>
+        </ul>
+
+        <ul class="navbar-nav">
+          <% if (!username) { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <% } %> <% if (username) { %>
+          <li class="nav-item">
+            <span class="navbar-text me-2">
+              Bonjour <strong><%= username %></strong>
+            </span>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-danger" href="/logout">Logout</a>
+          </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

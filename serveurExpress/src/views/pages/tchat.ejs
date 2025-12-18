@@ -1,0 +1,57 @@
+<%- include('../layout', { content: `
+<!-- Modal pour le pseudo -->
+<div
+  class="modal fade"
+  id="pseudo"
+  tabindex="-1"
+  aria-hidden="true"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Entrez votre pseudo</h5>
+      </div>
+      <div class="modal-body">
+        <form id="pseudo-form">
+          <input
+            id="pseudo-input"
+            class="form-control"
+            placeholder="Votre pseudo"
+            required
+          />
+          <button type="submit" class="btn btn-secondary mt-3 w-100">
+            Valider
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container my-5">
+  <h2 class="mb-4 text-center">Tchat</h2>
+
+  <!-- Card pour les messages -->
+  <div class="card shadow-sm mb-4">
+    <div id="tchat" class="card-body" style="height: 400px; overflow-y: auto">
+      <!-- Les messages apparaîtront ici -->
+    </div>
+  </div>
+
+  <!-- Formulaire d'envoi -->
+  <form id="tchat-form" class="d-flex">
+    <input
+      id="input"
+      class="form-control me-2"
+      autocomplete="off"
+      placeholder="Écrire un message..."
+    />
+    <button class="btn btn-secondary" type="submit">Envoyer</button>
+  </form>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/tchat.js"></script>
+` }) %>

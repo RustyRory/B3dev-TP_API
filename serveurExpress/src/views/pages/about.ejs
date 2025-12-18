@@ -1,0 +1,88 @@
+<%- include('../layout', { content: `
+<div class="text-center mb-5">
+  <h2 class="mb-3">À propos de ce projet</h2>
+  <p class="lead">
+    Ce TP a été réalisé dans le cadre de la formation
+    <strong>MyDigitalSchool</strong>. L'objectif est de se familiariser avec
+    <strong>Node.js</strong>, <strong>Express</strong> et
+    <strong>EJS</strong> pour créer des applications web dynamiques.
+  </p>
+</div>
+
+<div class="row g-4">
+  <!-- Card Objectifs pédagogiques -->
+  <div class="col-md-6">
+    <div class="card h-100 shadow-sm">
+      <h3 class="card-header text-center">🎯 Objectifs</h3>
+      <div class="card-body">
+        <h5 class="card-title text-center">Apprentissage de :</h5>
+        <div class="card-text text-align-left mb-3">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              Création d'un serveur web avec Node.js et Express
+            </li>
+            <li class="list-group-item">Gestion des routes GET et POST</li>
+            <li class="list-group-item">
+              Utilisation du moteur de templates EJS
+            </li>
+            <li class="list-group-item">Mettre en place un layout commun</li>
+            <li class="list-group-item">
+              Manipulation des formulaires et validations
+            </li>
+            <li class="list-group-item">Comprendre les sessions utilisateur</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card Fonctionnalités -->
+  <div class="col-md-6">
+    <div class="card h-100 shadow-sm">
+      <h3 class="card-header text-center">🛠 Fonctionnalités</h3>
+      <div class="card-body">
+        <h5 class="card-title text-center">Ce que le site offre :</h5>
+        <div class="card-text text-align-left mb-3">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Pages dynamiques avec EJS</li>
+            <li class="list-group-item">Système login/logout</li>
+            <li class="list-group-item">
+              Distributeur automatique de billets (DAB)
+            </li>
+            <li class="list-group-item">Gestion des erreurs (404)</li>
+            <li class="list-group-item">Téléchargement de fichiers .txt</li>
+            <li class="list-group-item">Tchat en temps réel (WebSocket)</li>
+            <li class="list-group-item">Interface responsive avec Bootstrap</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Card GitHub -->
+<div class="card text-center mt-5 shadow-sm">
+  <h3 class="card-header">📦 Dépôt GitHub</h3>
+  <div class="card-body">
+    <h5 class="card-title">Code source complet</h5>
+    <p class="card-text">
+      Retrouvez tout le code du TP sur GitHub pour consulter, cloner ou
+      contribuer.
+    </p>
+  </div>
+  <div class="card-footer text-muted">
+    <a
+      href="https://github.com/RustyRory/B3dev-TP_API"
+      target="_blank"
+      class="btn btn-secondary"
+    >
+      Voir le repository
+    </a>
+  </div>
+</div>
+
+<div class="alert alert-secondary mt-5 text-center">
+  <strong>Technologies utilisées :</strong>
+  Node.js • Express • EJS • Bootstrap
+</div>
+`}) %>
