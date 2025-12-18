@@ -1,0 +1,93 @@
+<%- include('../layout', { content: `
+<!-- Modal pour le pseudo -->
+<div
+  class="modal fade"
+  id="pseudo"
+  tabindex="-1"
+  aria-hidden="true"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="card-title">Entrez votre pseudo</h5>
+      </div>
+      <div class="modal-body">
+        <form id="pseudo-form">
+          <input
+            id="pseudo-input"
+            class="form-control"
+            placeholder="Votre pseudo"
+            required
+          />
+          <button type="submit" class="btn btn-secondary mt-3 w-100">
+            Valider
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container my-5">
+  <h2 class="mb-4 text-center">Tchat</h2>
+
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <h5 class="card-title text-center mb-4">
+        Salon : <span id="current-room">Général</span>
+      </h5>
+
+      <!-- Navigation pills pour les rooms -->
+      <ul
+        class="nav nav-pills card-header-pills mb-3"
+        id="roomPills"
+        role="tablist"
+      >
+        <li class="nav-item">
+          <button class="nav-link active" data-room="general" type="button">
+            Général
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" data-room="channel" type="button">
+            Channel
+          </button>
+        </li>
+        <li class="nav-item">
+          <button
+            class="nav-link"
+            id="admin-tab"
+            data-room="admin"
+            type="button"
+          >
+            Admin
+          </button>
+        </li>
+      </ul>
+
+      <div
+        id="tchat"
+        class="card-body"
+        style="
+          height: 400px;
+          overflow-y: auto;
+          background-color: #f8f9fa;
+          border-radius: 0.25rem;
+        "
+      ></div>
+    </div>
+  </div>
+
+  <form id="tchat-form" class="d-flex">
+    <input
+      id="input"
+      class="form-control me-2"
+      autocomplete="off"
+      placeholder="Écrire un message..."
+    />
+    <button class="btn btn-secondary" type="submit">Envoyer</button>
+  </form>
+</div>
+` }) %>

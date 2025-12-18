@@ -1,0 +1,114 @@
+<%- include('../layout', {
+  content: `
+<div class="container my-5">
+  <h2 class="mb-4 text-center">DAB - Distribution des coupures</h2>
+
+  <!-- Formulaire DAB -->
+  <div class="card shadow-sm mb-4 mx-auto col-12 col-sm-8 col-md-6 col-lg-4">
+    <div class="card-body">
+      <form method="post" action="/dab">
+        <div class="mb-3">
+          <label for="montant" class="form-label">Montant :</label>
+          <input
+            type="text"
+            class="form-control"
+            id="montant"
+            name="montant"
+            value="${montant || ""}"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="typeDevise" class="form-label">Devise :</label>
+          <select
+            id="typeDevise"
+            name="typeDevise"
+            class="form-select"
+            required
+          >
+            <option value="€" ${typeDevise === "€" ? "selected" : ""}>€</option>
+            <option value="$" ${typeDevise === "$" ? "selected" : ""}>$</option>
+            <option value="£" ${typeDevise === "£" ? "selected" : ""}>£</option>
+            <option value="¥" ${typeDevise === "¥" ? "selected" : ""}>¥</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-secondary w-100">Calculer</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Erreur -->
+  ${
+    error
+      ? `<div class="alert alert-danger text-center">${error}</div>`
+      : ""
+  }
+
+  <!-- Résultats -->
+  ${
+    result
+      ? `
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title text-center mb-4">
+        Distribution des coupures pour ${result.montant} ${result.typeDevise} :
+      </h5>
+
+      <!-- Navigation pills -->
+      <ul class="nav nav-pills card-header-pills  mb-3" id="dabTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="list-tab" data-bs-toggle="tab" data-bs-target="#list" type="button" role="tab">Liste</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="cards-tab" data-bs-toggle="tab" data-bs-target="#cards" type="button" role="tab">Billets</button>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-secondary" href="/download">Télécharger .txt</a>
+          </li>
+      </ul>
+
+      <div class="tab-content" id="dabTabContent">
+        <!-- Liste -->
+        <div class="tab-pane fade show active" id="list" role="tabpanel">
+        <ul class="list-group list-group-flush">
+            ${Object.entries(result.distribution)
+            .map(
+                ([key, value]) =>
+                `<li class="list-group-item d-flex justify-content-between py-1">
+                    <span>${key}</span>
+                    <span>${value}</span>
+                </li>`
+            )
+            .join("")}
+        </ul>
+        </div>
+
+        <!-- Cards -->
+        <div class="tab-pane fade" id="cards" role="tabpanel">
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 mt-2">
+            ${Object.entries(result.distribution)
+              .map(
+                ([key, value]) =>
+                  `<div class="col">
+                    <div class="card h-100 text-center border-secondary shadow-sm">
+                      <div class="card-body">
+                        <h6 class="card-title">${key}</h6>
+                        <p class="card-text">${value}</p>
+                      </div>
+                    </div>
+                  </div>`
+              )
+              .join("")}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  `
+      : ""
+  }
+</div>
+`
+}) %>
