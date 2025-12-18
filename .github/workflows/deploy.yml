@@ -50,12 +50,12 @@ jobs:
             npm install
             echo "📦 Dépendances installées"
 
-            # Redémarrer l'application avec PM2 (update-env pour prendre en compte les variables)
+            # Redémarrer l'application avec PM2
             if pm2 describe tp-nodejs > /dev/null; then
-              echo "🔄 Redémarrage du process PM2 existant..."
-              pm2 restart tp-nodejs --update-env
+              echo "Redémarrage du process PM2 existant..."
+              pm2 restart tp-nodejs
             else
-              echo "▶️ Démarrage d'un nouveau process PM2..."
+              echo "Démarrage d'un nouveau process PM2..."
               pm2 start app.js --name tp-nodejs
             fi
 
