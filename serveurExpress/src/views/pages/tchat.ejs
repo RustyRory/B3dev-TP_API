@@ -1,3 +1,14 @@
+<!-- 
+
+Path: serveurExpress/src/views/pages/tchat.ejs
+Title: Tchat - TP Node.js
+
+Utilise le layout principal pour afficher une page de tchat
+avec un formulaire pour envoyer des messages
+et une modal pour entrer le pseudo
+
+-->
+
 <%- include('../layout', { content: `
 <!-- Modal pour le pseudo -->
 <div
@@ -30,11 +41,13 @@
   </div>
 </div>
 
+<!-- Conteneur principal du tchat -->
 <div class="container my-5">
   <h2 class="mb-4 text-center">Tchat</h2>
 
   <div class="card shadow-sm mb-4">
     <div class="card-body">
+      <!-- Titre du salon -->
       <h5 class="card-title text-center mb-4">
         Salon : <span id="current-room">Général</span>
       </h5>
@@ -45,16 +58,19 @@
         id="roomPills"
         role="tablist"
       >
+        <!-- Boutton pour le salon général (par défaut) -->
         <li class="nav-item">
           <button class="nav-link active" data-room="general" type="button">
             Général
           </button>
         </li>
+        <!-- Boutton pour le salon channel -->
         <li class="nav-item">
           <button class="nav-link" data-room="channel" type="button">
             Channel
           </button>
         </li>
+        <!-- Boutton pour le salon admin -->
         <li class="nav-item">
           <button
             class="nav-link"
@@ -66,7 +82,7 @@
           </button>
         </li>
       </ul>
-
+      <!---- Zone d'affichage des messages -->
       <div
         id="tchat"
         class="card-body"
@@ -79,7 +95,7 @@
       ></div>
     </div>
   </div>
-
+  <!-- Formulaire pour envoyer des messages -->
   <form id="tchat-form" class="d-flex">
     <input
       id="input"
@@ -87,6 +103,7 @@
       autocomplete="off"
       placeholder="Écrire un message..."
     />
+    <!-- Bouton d'envoi du message -->
     <button class="btn btn-secondary" type="submit">Envoyer</button>
   </form>
 </div>

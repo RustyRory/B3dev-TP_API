@@ -1,27 +1,53 @@
+// path: serveurExpress/src/app.js
+// title: Serveur Express principal avec routes DAB et Tchat
+//
+// Configure un serveur Express avec des routes pour un DAB et un tchat en temps réel via Socket.io.
+// Gère les sessions, les cookies, et le rendu des vues avec EJS.
+
+// ---- IMPORTS ----
+// serveurExpress/src/app.js
 import express from "express";
+// Modules natifs Node.js
 import fs from "node:fs";
+// Pour gérer les chemins de fichiers
 import path from "node:path";
+// Pour obtenir le nom de fichier courant
 import { fileURLToPath } from "node:url";
+// Middleware pour gérer les cookies
 import cookieParser from "cookie-parser";
+// Middleware pour gérer les sessions
 import session from "express-session";
+// Pour créer le serveur HTTP
 import { createServer } from "http";
+// Pour Socket.io
 import { Server as SocketIO } from "socket.io";
+// Import de la fonction de distribution des coupures du DAB
 import { determineCoupureGeneric } from "./public/js/dab.js";
 
+// ---- INITIALISATION ----
+// Obtenir le __dirname dans un module ESM
 const __filename = fileURLToPath(import.meta.url);
+// Chemin du répertoire courant
 const __dirname = path.dirname(__filename);
-
+// Initialisation de l'application Express
 const app = express();
+// Définition du port
 const PORT = 8080;
 
 // ---- CONFIG ----
+// Définition du moteur de vues et des répertoires
 app.set("view engine", "ejs");
+// Répertoire des vues
 app.set("views", path.join(__dirname, "views"));
+// Middleware pour parser le corps des requêtes
 app.use(express.urlencoded({ extended: true }));
+// Middleware pour parser les cookies
 app.use(cookieParser());
+// Middleware pour servir les fichiers statiques
 app.use(express.static(path.join(__dirname, "public")));
 
 // ---- SESSIONS ----
+// Configuration du middleware de session
 app.use(
   session({
     secret: "secret-key",
@@ -30,7 +56,8 @@ app.use(
   })
 );
 
-// ---- MIDDLEWARE isAdmin + username ----
+// ---- MIDDLEWARE ----
+// Middleware pour gérer isAdmin et username dans les vues
 app.use((req, res, next) => {
   // Récupère isAdmin depuis query ou cookie
   if (req.query.isAdmin !== undefined) {
@@ -40,23 +67,28 @@ app.use((req, res, next) => {
   } else {
     res.locals.isAdmin = req.cookies.isAdmin === "true";
   }
-
   // username dans toutes les pages
   res.locals.username = req.session.username || null;
   next();
 });
 
 // ---- ROUTES ----
+// ---- PAGES STANDARDS ----
+// Page d'accueil
 app.get("/", (req, res) => res.render("pages/index", { title: "Accueil" }));
+// Page Contact
 app.get("/contact", (req, res) =>
   res.render("pages/contact", { title: "Contact" })
 );
+// Page À propos
 app.get("/about", (req, res) =>
   res.render("pages/about", { title: "À propos" })
 );
+// Page d'erreur 404 personnalisée
 app.get("/error", (req, res) => res.render("pages/404", { title: "404" }));
 
 // ---- DOWNLOAD ----
+// Route pour télécharger le fichier de distribution des coupures
 app.get("/download", (req, res) => {
   const now = new Date();
   const pad = (n) => String(n).padStart(2, "0");
