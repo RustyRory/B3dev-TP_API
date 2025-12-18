@@ -1,3 +1,13 @@
+<!-- 
+
+Path: serveurExpress/src/views/pages/login.ejs
+Title: Page de connexion - TP Node.js
+
+Utilise le layout principal pour afficher une page de connexion
+avec un formulaire pour le login et le mot de passe
+
+-->
+
 <%- include('../layout', { content: `
 <div class="container my-5">
   <div class="row justify-content-center">
@@ -5,8 +15,9 @@
       <div class="card shadow-sm">
         <div class="card-body">
           <h2 class="card-title text-center mb-4">Connexion</h2>
-
+          <!-- Formulaire de connexion -->
           <form method="post" action="/login">
+            <!-- Login -->
             <div class="mb-3">
               <label for="login" class="form-label">Login</label>
               <input
@@ -18,7 +29,7 @@
                 required
               />
             </div>
-
+            <!-- Mot de passe -->
             <div class="mb-3">
               <label for="password" class="form-label">Mot de passe</label>
               <input
@@ -30,12 +41,12 @@
                 required
               />
             </div>
-
+            <!-- Bouton de soumission du formulaire -->
             <button type="submit" class="btn btn-secondary w-100">
               Se connecter
             </button>
           </form>
-
+          <!-- Affichage de l'erreur si elle existe -->
           ${error ? `
           <div class="alert alert-danger mt-3 text-center">${error}</div>
           ` : ''}
