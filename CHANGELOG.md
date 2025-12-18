@@ -4,7 +4,7 @@
 
 - Ajout Bootstrap
 - Corrections DAB
-- Correction tchat
+- Corrections tchat
 
 ## [1.2.0]
 
