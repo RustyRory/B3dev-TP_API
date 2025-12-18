@@ -10,10 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Récupération du code depuis GitHub
       - uses: actions/checkout@v3
 
+      # 2️⃣ Déploiement sur le VPS via SSH
       - name: Deploy to VPS
-        uses: appleboy/ssh-action@v0.1.6
+        uses: appleboy/ssh-action@v0.1.9
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
@@ -21,10 +23,34 @@ jobs:
           port: 22
           script: |
             echo "Déploiement démarré..."
-            cd /root/B3dev/B3dev-TP_API/serveurExpress
+
+            # Se placer dans le dossier de l'application
+            cd /root/B3dev-TP_API/serveurExpress || exit 1
+
+            # Vérifier le repo et la branche
+            echo "Avant mise à jour :"
+            git status
+            git log -1
+
+            # Récupérer les dernières modifications
             git fetch origin main
             git reset --hard origin/main
+            echo "Mise à jour du code terminée"
+
+            # Vérifier la version après mise à jour
+            git status
+            git log -1
+
+            # Installer les dépendances
             npm install
-            pm2 restart tp-nodejs || pm2 start app.js --name tp-nodejs
-            npm start
-            echo "Déploiement terminé."
+
+            # Redémarrer l'application avec PM2
+            if pm2 describe tp-nodejs > /dev/null; then
+              echo "Redémarrage du process PM2 existant..."
+              pm2 restart tp-nodejs
+            else
+              echo "Démarrage d'un nouveau process PM2..."
+              pm2 start app.js --name tp-nodejs
+            fi
+
+            echo "Déploiement terminé avec succès !"
