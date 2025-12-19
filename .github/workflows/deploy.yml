@@ -25,7 +25,7 @@ jobs:
             echo "🚀 Déploiement démarré..."
 
             # Se placer dans le dossier de l'application
-            cd /B3dev-TP_API/serveurExpress || exit 1
+            cd /var/www/b3dev-api/serveurExpress || exit 1
 
             # Nettoyer les fichiers non suivis pour éviter les conflits
             git clean -fd
