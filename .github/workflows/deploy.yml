@@ -31,11 +31,6 @@ jobs:
             git clean -fd
             echo "🧹 Fichiers non suivis supprimés"
 
-            # Vérifier le repo et la branche avant mise à jour
-            echo "📌 Avant mise à jour :"
-            git status
-            git log -1
-
             # Récupérer les dernières modifications
             git fetch origin main
             git reset --hard origin/main
