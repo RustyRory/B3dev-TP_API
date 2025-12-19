@@ -34,7 +34,7 @@ const app = express();
 // Définition du port
 // Port 3000 → interne seulement
 // NGINX fera le lien vers 80/8080/443
-const PORT = 8080;
+const PORT = 3000;
 
 // ---- CONFIG ----
 // Définition du moteur de vues et des répertoires
