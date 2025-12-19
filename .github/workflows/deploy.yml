@@ -61,4 +61,5 @@ jobs:
 
             # Vérification finale
             pm2 status tp-nodejs
+
             echo "🎉 Déploiement terminé avec succès !"
