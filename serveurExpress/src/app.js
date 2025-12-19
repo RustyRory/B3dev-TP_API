@@ -32,7 +32,9 @@ const __dirname = path.dirname(__filename);
 // Initialisation de l'application Express
 const app = express();
 // Définition du port
-const PORT = 8080;
+// Port 3000 → interne seulement
+// NGINX fera le lien vers 80/8080/443
+const PORT = 3000;
 
 // ---- CONFIG ----
 // Définition du moteur de vues et des répertoires
@@ -231,6 +233,6 @@ io.on("connection", (socket) => {
   );
 });
 
-httpServer.listen(PORT, "78.138.58.95", () =>
-  console.log(`Serveur démarré sur http://78.138.58.95:${PORT}`)
+httpServer.listen(PORT, "127.0.0.1", () =>
+  console.log(`Serveur démarré sur http://127.0.0.1:${PORT}`)
 );
