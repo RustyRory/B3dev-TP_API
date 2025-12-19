@@ -42,19 +42,19 @@ jobs:
             echo "✅ Mise à jour du code terminée"
 
             # Installer les dépendances
-            npm install
+            npm install -g pm2
             echo "📦 Dépendances installées"
 
             # Redémarrer l'application avec PM2
-            if pm2 describe tp-nodejs > /dev/null; then
+            if pm2 describe b3dev-api > /dev/null; then
               echo "Redémarrage du process PM2 existant..."
-              pm2 restart tp-nodejs
+              pm2 restart b3dev-api
             else
               echo "Démarrage d'un nouveau process PM2..."
-              pm2 start src/app.js --name tp-nodejs
+              pm2 start src/app.js --name b3dev-api
             fi
 
             # Vérification finale
-            pm2 status tp-nodejs
+            pm2 status b3dev-api
 
             echo "🎉 Déploiement terminé avec succès !"
