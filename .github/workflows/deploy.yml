@@ -38,7 +38,7 @@ jobs:
 
             # Installer les dépendances
             npm install -g pm2
-            echo "📦 Dépendances installées"
+            echo "📦 Dépendances et pm2 installées"
 
             # Redémarrer l'application avec PM2
             if pm2 describe b3dev-api > /dev/null; then
